@@ -1,3 +1,6 @@
+import 'dart:math';
+
+import 'package:faker/faker.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:gojekclone/screens/detail_resto.dart';
@@ -11,8 +14,13 @@ class NearMeScreen extends StatelessWidget {
     {"title": "Promo", "icon": Icon(Icons.price_change)},
   ];
 
+  final Faker faker = Faker();
+
   @override
   Widget build(BuildContext context) {
+    // List<Restaurants> data = List.generate(10, (index) => {
+    //   return Restaurants(index +1,faker.food.restaurant(),"Up To ${10 + Random().nextInt(50)}%","https://lorempixel.com/640/480/food/${index+1}", true,Random().nextBool(),Foods(faker.food.dish(), "https://lorempixel.com/640/480/food/${index+1}", 0, false, 5000 + Random().nextInt(90000)));
+    // });
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -151,11 +159,14 @@ class NearMeScreen extends StatelessWidget {
                 ),
                 trailing: (restaurant[index]["isFavorite"])
                     ? Icon(
-                        Icons.thumb_up_rounded,
+                        Icons.recommend,
                         color: Colors.amber,
                       )
                     : null,
-                onTap: () => Get.to(DetailRestoScreen(), arguments: index),
+                onTap: () => Get.to(
+                  DetailRestoScreen(),
+                  arguments: index,
+                ),
               ),
               separatorBuilder: (context, index) => SizedBox(
                 height: 10,

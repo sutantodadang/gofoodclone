@@ -68,7 +68,7 @@ class PaymentSummaryScreen extends StatelessWidget {
 
           Container(
             margin: EdgeInsets.all(10),
-            padding: EdgeInsets.all(10),
+            padding: EdgeInsets.all(20),
             decoration: BoxDecoration(
               border: Border.all(width: 1, color: Colors.black26),
               borderRadius: BorderRadius.circular(15),
@@ -243,6 +243,132 @@ class PaymentSummaryScreen extends StatelessWidget {
           // )
         ],
       ),
+      persistentFooterButtons: [
+        Column(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Container(
+                      margin: EdgeInsets.only(right: 10),
+                      width: 30,
+                      height: 30,
+                      decoration: BoxDecoration(
+                        color: Colors.blue.shade400,
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                      child: Icon(
+                        Icons.account_balance_wallet_outlined,
+                        color: Colors.white,
+                      ),
+                    ),
+                    Container(
+                      width: 250,
+                      decoration: BoxDecoration(
+                        color: Colors.grey.shade400,
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                      child: Row(
+                        children: [
+                          Container(
+                            margin: EdgeInsets.only(right: 10),
+                            alignment: Alignment.center,
+                            height: 30,
+                            width: 180,
+                            decoration: BoxDecoration(
+                                color: Colors.blue.shade700,
+                                borderRadius: BorderRadius.circular(20)),
+                            child: Text(
+                              "Gopay later by findday",
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.w500,
+                              ),
+                            ),
+                          ),
+                          Text(
+                            "50000",
+                            style: TextStyle(
+                              fontWeight: FontWeight.w500,
+                            ),
+                          ),
+                        ],
+                      ),
+                    )
+                  ],
+                ),
+                IconButton(
+                    onPressed: () {},
+                    icon: Icon(
+                      Icons.pending,
+                      size: 30,
+                    ))
+              ],
+            ),
+            SizedBox(
+              height: 10,
+            ),
+            TextButton(
+              onPressed: () {},
+              child: Text(
+                "Order",
+                style: TextStyle(color: Colors.white),
+              ),
+              style: TextButton.styleFrom(
+                  backgroundColor: Colors.green.shade900,
+                  minimumSize: Size(
+                    double.infinity,
+                    50,
+                  ),
+                  shape: StadiumBorder()),
+            ),
+            SizedBox(
+              height: 10,
+            ),
+            Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+              Icon(
+                Icons.confirmation_num,
+                color: Colors.red,
+              ),
+              SizedBox(
+                width: 10,
+              ),
+              Text("Yeey! You saved "),
+              Text(
+                "12000",
+                style: TextStyle(fontWeight: FontWeight.w600),
+              ),
+              Text(" on this order!!!")
+            ])
+          ],
+        ),
+      ],
+      // bottomSheet: Column(
+      //   mainAxisAlignment: MainAxisAlignment.end,
+      //   children: [
+      //     Row(
+      //       children: [
+      //         Row(
+      //           children: [
+      //             Container(
+      //               width: 20,
+      //               height: 20,
+      //               decoration: BoxDecoration(
+      //                 color: Colors.blue.shade400,
+      //                 borderRadius: BorderRadius.circular(20),
+      //               ),
+      //               child: Icon(Icons.price_change),
+      //             )
+      //           ],
+      //         )
+      //       ],
+      //     )
+      //   ],
+      // ),
     );
   }
 }
