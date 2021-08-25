@@ -2,9 +2,16 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:gojekclone/screens/payment_summary.dart';
 import 'package:gojekclone/utils/data.dart';
 
 class DetailRestoScreen extends StatelessWidget {
+  var counter = 0.obs;
+
+  void add() {
+    counter++;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -99,7 +106,7 @@ class DetailRestoScreen extends StatelessWidget {
                                 ],
                               ),
                               IconButton(
-                                onPressed: () {},
+                                onPressed: () => Get.to(PaymentSummaryScreen()),
                                 icon: Icon(Icons.favorite_outline_outlined),
                               )
                             ],
@@ -114,26 +121,31 @@ class DetailRestoScreen extends StatelessWidget {
                                   width: 80,
                                   height: 80,
                                   fit: BoxFit.cover,
+                                  color: Colors.grey,
                                 ),
                               ),
                               Container(
                                 margin: EdgeInsets.only(top: 20),
                                 width: 60,
                                 height: 25,
-                                child: ElevatedButton(
-                                  style: ElevatedButton.styleFrom(
-                                    elevation: 0,
-                                    shape: StadiumBorder(
-                                      side: BorderSide(
-                                          width: 1,
-                                          color: Colors.green.shade300),
+                                child: Obx(
+                                  () => ElevatedButton(
+                                    style: ElevatedButton.styleFrom(
+                                      elevation: 0,
+                                      shape: StadiumBorder(
+                                        side: BorderSide(
+                                            width: 1,
+                                            color: Colors.green.shade300),
+                                      ),
+                                      primary: Colors.white,
+                                      onPrimary: Colors.green,
+                                      onSurface: Colors.green,
                                     ),
-                                    primary: Colors.white,
-                                    onPrimary: Colors.green,
-                                    onSurface: Colors.green,
+                                    onPressed: () {
+                                      add();
+                                    },
+                                    child: Text(counter.toString()),
                                   ),
-                                  onPressed: () {},
-                                  child: Text("Add"),
                                 ),
                               )
                             ],
