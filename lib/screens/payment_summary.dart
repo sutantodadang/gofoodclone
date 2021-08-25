@@ -67,12 +67,21 @@ class PaymentSummaryScreen extends StatelessWidget {
           ),
 
           Container(
+            margin: EdgeInsets.all(10),
+            padding: EdgeInsets.all(10),
+            decoration: BoxDecoration(
+              border: Border.all(width: 1, color: Colors.black26),
+              borderRadius: BorderRadius.circular(15),
+            ),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
                   "Payment Summary",
                   style: TextStyle(fontWeight: FontWeight.w700),
+                ),
+                SizedBox(
+                  height: 20,
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -94,6 +103,9 @@ class PaymentSummaryScreen extends StatelessWidget {
                     )
                   ],
                 ),
+                SizedBox(
+                  height: 20,
+                ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -114,10 +126,14 @@ class PaymentSummaryScreen extends StatelessWidget {
                     )
                   ],
                 ),
+                SizedBox(
+                  height: 20,
+                ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Container(
+                      height: 40,
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
@@ -136,9 +152,15 @@ class PaymentSummaryScreen extends StatelessWidget {
                     Text("3000")
                   ],
                 ),
+                SizedBox(
+                  height: 20,
+                ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [Text("Order Fee"), Text("1000")],
+                ),
+                SizedBox(
+                  height: 20,
                 ),
                 Container(
                   padding: EdgeInsets.all(10),
@@ -156,6 +178,9 @@ class PaymentSummaryScreen extends StatelessWidget {
                   ),
                   child: Text("Applies to orders below"),
                 ),
+                SizedBox(
+                  height: 20,
+                ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -168,6 +193,9 @@ class PaymentSummaryScreen extends StatelessWidget {
                       style: TextStyle(fontWeight: FontWeight.w700),
                     )
                   ],
+                ),
+                SizedBox(
+                  height: 20,
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
