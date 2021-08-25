@@ -7,13 +7,19 @@ import 'package:gojekclone/utils/data.dart';
 
 class DetailRestoScreen extends StatelessWidget {
   var counter = 0.obs;
+  var listIndex = [].obs;
+  var totalPrice = 0;
 
-  void add() {
+  void add(i, int money) {
     counter++;
+    listIndex.add(i);
+    totalPrice += money;
   }
 
-  void min() {
+  void min(i, int money) {
     counter--;
+    listIndex.removeWhere((element) => element == i);
+    totalPrice -= money;
   }
 
   @override
@@ -100,16 +106,18 @@ class DetailRestoScreen extends StatelessWidget {
                                   ),
                                   Row(
                                     children: [
-                                      Text(i["foods"][index]["price"]
-                                          .toString()),
+                                      Text(
+                                        (i["foods"][index]["price"] *
+                                                (discInt / 100))
+                                            .round()
+                                            .toString(),
+                                      ),
                                       Container(
                                         margin: EdgeInsets.symmetric(
                                             horizontal: 10),
                                         child: (i["isDiscount"])
                                             ? Text(
-                                                (i["foods"][index]["price"] *
-                                                        (discInt / 100))
-                                                    .round()
+                                                i["foods"][index]["price"]
                                                     .toString(),
                                                 style: TextStyle(
                                                     decoration: TextDecoration
@@ -140,8 +148,7 @@ class DetailRestoScreen extends StatelessWidget {
                                     ],
                                   ),
                                   IconButton(
-                                    onPressed: () =>
-                                        Get.to(PaymentSummaryScreen()),
+                                    onPressed: () {},
                                     icon: Icon(Icons.favorite_outline_outlined),
                                   )
                                 ],
@@ -186,7 +193,10 @@ class DetailRestoScreen extends StatelessWidget {
                                                     padding: EdgeInsets.only(
                                                         bottom: 3),
                                                     alignment: Alignment.center,
-                                                    onPressed: () => min(),
+                                                    onPressed: () => min(
+                                                        index,
+                                                        i["foods"][index]
+                                                            ["price"]),
                                                     icon: Icon(
                                                       Icons.remove,
                                                       color: Colors.green,
@@ -216,7 +226,10 @@ class DetailRestoScreen extends StatelessWidget {
                                                     padding: EdgeInsets.only(
                                                         bottom: 3),
                                                     alignment: Alignment.center,
-                                                    onPressed: () => add(),
+                                                    onPressed: () => add(
+                                                        index,
+                                                        i["foods"][index]
+                                                            ["price"]),
                                                     icon: Icon(
                                                       Icons.add,
                                                       color: Colors.green,
@@ -241,7 +254,8 @@ class DetailRestoScreen extends StatelessWidget {
                                               onSurface: Colors.green,
                                             ),
                                             onPressed: () {
-                                              add();
+                                              add(index,
+                                                  i["foods"][index]["price"]);
                                             },
                                             child: Text("Add"),
                                           ),
@@ -265,7 +279,7 @@ class DetailRestoScreen extends StatelessWidget {
               alignment: Alignment.bottomCenter,
               child: (counter > 0)
                   ? Container(
-                      margin: EdgeInsets.only(bottom: 100),
+                      margin: EdgeInsets.only(bottom: 80),
                       child: ElevatedButton.icon(
                         onPressed: () {},
                         icon: Icon(Icons.food_bank),
@@ -288,14 +302,62 @@ class DetailRestoScreen extends StatelessWidget {
             () => Align(
               alignment: Alignment.bottomCenter,
               child: (counter > 0)
-                  ? Container(
-                      margin: EdgeInsets.all(20),
-                      width: double.infinity,
-                      height: 50,
-                      decoration: BoxDecoration(
-                          color: Colors.green.shade700,
-                          borderRadius: BorderRadius.circular(50)),
-                      child: Text("tes"),
+                  ? GestureDetector(
+                      onTap: () => Get.to(PaymentSummaryScreen(), arguments: {
+                        "total": totalPrice,
+                        "totalItem": counter,
+                        "resto": i["name"],
+                        "disc": discInt,
+                      }),
+                      child: Container(
+                        margin: EdgeInsets.all(20),
+                        width: double.infinity,
+                        padding:
+                            EdgeInsets.symmetric(horizontal: 30, vertical: 5),
+                        height: 50,
+                        decoration: BoxDecoration(
+                            color: Colors.green.shade700,
+                            borderRadius: BorderRadius.circular(50)),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Container(
+                              width: 200,
+                              child: Column(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceAround,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    "${counter.value} Item",
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                  Text(
+                                    i["name"],
+                                    maxLines: 1,
+                                    overflow: TextOverflow.ellipsis,
+                                    style: TextStyle(color: Colors.white),
+                                  )
+                                ],
+                              ),
+                            ),
+                            Text(
+                              "${counter.value * totalPrice}",
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.w600,
+                                  fontSize: 18),
+                            ),
+                            Icon(
+                              Icons.shopping_bag,
+                              color: Colors.white,
+                            )
+                          ],
+                        ),
+                      ),
                     )
                   : SizedBox(),
             ),

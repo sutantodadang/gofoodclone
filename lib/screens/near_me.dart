@@ -18,9 +18,27 @@ class NearMeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // List<Restaurants> data = List.generate(10, (index) => {
-    //   return Restaurants(index +1,faker.food.restaurant(),"Up To ${10 + Random().nextInt(50)}%","https://lorempixel.com/640/480/food/${index+1}", true,Random().nextBool(),Foods(faker.food.dish(), "https://lorempixel.com/640/480/food/${index+1}", 0, false, 5000 + Random().nextInt(90000)));
-    // });
+    // List<Restaurants> data = List.generate(
+    //   10,
+    //   (index) => Restaurants(
+    //     index + 1,
+    //     faker.food.restaurant(),
+    //     faker.food.cuisine(),
+    //     "Up To ${10 + Random().nextInt(50)}%",
+    //     "https://lorempixel.com/640/480/food/${index + 1}",
+    //     true,
+    //     true,
+    //     "${0.1 + Random().nextDouble()}",
+    //     Foods(
+    //       faker.food.dish(),
+    //       "https://lorempixel.com/640/480/food/${index + 1}",
+    //       0,
+    //       false,
+    //       5000 + Random().nextInt(90000),
+    //     ),
+    //   ),
+    // );
+    // print(data);
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(

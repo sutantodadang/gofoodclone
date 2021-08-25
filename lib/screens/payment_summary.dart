@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 class PaymentSummaryScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    var data = Get.arguments;
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -17,7 +18,7 @@ class PaymentSummaryScreen extends StatelessWidget {
         ),
         backgroundColor: Colors.white,
         title: Text(
-          "Nasi Padang Enak Sekali Loh Gaes",
+          data["resto"],
           maxLines: 1,
           style: TextStyle(color: Colors.black),
         ),
@@ -93,11 +94,13 @@ class PaymentSummaryScreen extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text(
-                            "50000",
+                            data["total"].toString(),
                             style: TextStyle(
                                 decoration: TextDecoration.lineThrough),
                           ),
-                          Text("32000")
+                          Text((data["total"] * (data["disc"] / 100))
+                              .round()
+                              .toString()),
                         ],
                       ),
                     )
@@ -189,7 +192,12 @@ class PaymentSummaryScreen extends StatelessWidget {
                       style: TextStyle(fontWeight: FontWeight.w700),
                     ),
                     Text(
-                      "80000",
+                      (data["total"] * (data["disc"] / 100) +
+                              5000 +
+                              3000 +
+                              1000)
+                          .round()
+                          .toString(),
                       style: TextStyle(fontWeight: FontWeight.w700),
                     )
                   ],
@@ -291,7 +299,12 @@ class PaymentSummaryScreen extends StatelessWidget {
                             ),
                           ),
                           Text(
-                            "50000",
+                            (data["total"] * (data["disc"] / 100) +
+                                    5000 +
+                                    3000 +
+                                    1000)
+                                .round()
+                                .toString(),
                             style: TextStyle(
                               fontWeight: FontWeight.w500,
                             ),
@@ -339,7 +352,11 @@ class PaymentSummaryScreen extends StatelessWidget {
               ),
               Text("Yeey! You saved "),
               Text(
-                "12000",
+                ((data["total"] - (data["total"] * (data["disc"] / 100))) +
+                        12000 -
+                        5000)
+                    .round()
+                    .toString(),
                 style: TextStyle(fontWeight: FontWeight.w600),
               ),
               Text(" on this order!!!")

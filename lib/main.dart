@@ -5,9 +5,9 @@ import 'package:gojekclone/screens/home_screen.dart';
 
 void main() {
   SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
-      systemNavigationBarColor: Colors.white,
-      statusBarColor: Colors.transparent,
-      systemNavigationBarIconBrightness: Brightness.light,
+      systemNavigationBarColor: Colors.black,
+      statusBarColor: Colors.white,
+      systemNavigationBarIconBrightness: Brightness.dark,
       statusBarIconBrightness: Brightness.dark,
       statusBarBrightness: Brightness.dark));
   runApp(MyApp());
